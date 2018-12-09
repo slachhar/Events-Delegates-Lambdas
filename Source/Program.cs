@@ -3,23 +3,41 @@ using System;
 
 namespace Source
 {
-    internal class Program
+    public class Program
     {
-        public delegate void FirstDelegate(string name);
-
         private static void Main(string[] args)
         {
             Console.WriteLine("Hi, I am source!");
 
-            FirstDelegate del1 = new FirstDelegate(ProgramListener.FunctionForDelegate1);
-            FirstDelegate del2 = new FirstDelegate(ProgramListener.FunctionForDelegate2);
-            FirstDelegate del3 = new FirstDelegate(ProgramListener.FunctionForDelegate3);
+            WorkPerformedHandler del1 = new WorkPerformedHandler(FunctionForDelegate1);
+            WorkPerformedHandler del2 = new WorkPerformedHandler(FunctionForDelegate2);
+            WorkPerformedHandler del3 = new WorkPerformedHandler(FunctionForDelegate3);
 
             del1 = del1 + del2 + del3;
-            del1("Shefali");
+            del1(1, WorkType.Engineer);
             Console.ReadLine();
         }
-        
 
+        public static void FunctionForDelegate1(int hours, WorkType workType)
+        {
+            Console.WriteLine("1. Work Performed by {0} in hours {1}", hours, workType);
+        }
+
+        public static void FunctionForDelegate2(int hours, WorkType workType)
+        {
+            Console.WriteLine("2. Work Performed by {0} in hours {1}", hours, workType);
+        }
+
+        public static void FunctionForDelegate3(int hours, WorkType workType)
+        {
+            Console.WriteLine("3. Work Performed by {0} in hours {1}", hours, workType);
+        }
+    }
+
+    public enum WorkType
+    {
+        Engineer,
+        Manager,
+        QA
     }
 }
