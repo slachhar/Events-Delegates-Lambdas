@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Source
 {
-    public delegate void WorkPerformedHandler(int hours, WorkType workType);
-    
+    public delegate int WorkPerformedHandler(object sender, WorkPerformedEventArgs e);
+
     public class Worker
     {
         public event WorkPerformedHandler WorkPerformed;
@@ -30,7 +30,7 @@ namespace Source
             var del = WorkPerformed as WorkPerformedHandler;
             if(del != null)
             {
-                del(hours, workType);
+                del(this, new WorkPerformedEventArgs(hours, workType));
             }
         }
 
