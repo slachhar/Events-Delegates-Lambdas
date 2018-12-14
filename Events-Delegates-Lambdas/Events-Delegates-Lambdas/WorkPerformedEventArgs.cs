@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Source
+namespace Events_Delegates_Lambdas
 {
     
     public class WorkPerformedEventArgs : EventArgs

@@ -1,12 +1,13 @@
 ﻿//using Listener;
 using System;
 
-namespace Source
+namespace Events_Delegates_Lambdas
 {
-    public class Program
-    {
-        private static void Main(string[] args)
-        {
+	public delegate int BizData(int x, int y);
+	public class Program
+	{
+		private static void Main(string[] args)
+		{
 			// Console.WriteLine("Hi, I am source!");
 
 			// WorkPerformedHandler del1 = new WorkPerformedHandler(FunctionForDelegate1);
@@ -15,12 +16,18 @@ namespace Source
 
 			// del1 = del1 + del2 + del3;
 			// del1(1, WorkType.Engineer);
+			//Proces
+
+			BizData del = (x, y) => x + y;
+			ProcessData pro = new ProcessData();
+			pro.process(2, 4, del);
+
 			Worker worker = new Worker();
-			worker.WorkPerformed += (s,e) => Console.WriteLine("Work performed for " + e.Hours + " hours by " + e.WorkType); 
+			worker.WorkPerformed += (s, e) => Console.WriteLine("Work performed for " + e.Hours + " hours by " + e.WorkType);
 			worker.WorkCompleted += (s, e) => Console.WriteLine("Work Completed");
 			worker.DoWork(8, WorkType.Engineer);
-            Console.ReadLine();
-        }
+			Console.ReadLine();
+		}
 
 		//public static void worker_WorkPerformed(object sender, WorkPerformedEventArgs e)
 		//{
@@ -47,10 +54,10 @@ namespace Source
 		// }
 	}
 
-    public enum WorkType
-    {
-        Engineer,
-        Manager,
-        QA
-    }
+	public enum WorkType
+	{
+		Engineer,
+		Manager,
+		QA
+	}
 }
