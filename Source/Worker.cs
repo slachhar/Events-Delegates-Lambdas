@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Source
 {
-    public delegate int WorkPerformedHandler(object sender, WorkPerformedEventArgs e);
+   // public delegate int WorkPerformedHandler(object sender, WorkPerformedEventArgs e);
 
     public class Worker
     {
-        public event WorkPerformedHandler WorkPerformed;
+        public event EventHandler<WorkPerformedEventArgs> WorkPerformed;
         public event EventHandler WorkCompleted;
 
         public void DoWork(int hours, WorkType workType)
@@ -27,7 +27,7 @@ namespace Source
             //    WorkPerformed(hours,workType);
             //}
 
-            var del = WorkPerformed as WorkPerformedHandler;
+            var del = WorkPerformed as EventHandler<WorkPerformedEventArgs>;
             if(del != null)
             {
                 del(this, new WorkPerformedEventArgs(hours, workType));
